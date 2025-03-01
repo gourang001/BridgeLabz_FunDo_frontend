@@ -1,0 +1,32 @@
+.note-cards {
+    width: 220px;  // Reduced width
+    min-height: 100px; // Reduced height
+    padding: 0.8rem; // Reduced padding
+    border-radius: 8px;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    position: relative;
+    margin: 12px; // Adjusted margin for spacing
+    transition: box-shadow 0.3s ease-in-out;
+    overflow-wrap: break-word;
+  
+    &:hover {
+      box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Initially hide the icon toolbar */
+.icon-toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8px 8px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+/* Show the toolbar only when hovering over the note card */
+.note-cards:hover .icon-toolbar {
+    opacity: 1;
+    visibility: visible;
+}
