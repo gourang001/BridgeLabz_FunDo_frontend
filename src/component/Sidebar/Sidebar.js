@@ -19,7 +19,12 @@ const sidebarItemsList = [
         name: "Trash",
         icon: Trash2,
         path: '/dashboard/trash'
-    }
+    },
+    {
+        name: "Reminder",
+        icon: Trash2,
+        path: '/dashboard/reminder'
+    } 
 ];
 
 const Sidebar = ({ isCollapsed }) => {

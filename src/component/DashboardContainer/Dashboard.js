@@ -19,23 +19,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-
-// import React from "react";
-// import { Outlet } from "react-router-dom";
-// import "./Dashboard.scss";
-// import Navbar from "../Navbar/Navbar";
-// import Sidebar from "../Sidebar/Sidebar";
-// const Dashboard = () => {
-//     return (
-//       <div className="dashboard-main">
-//         <Navbar />
-//         <div className="dashboard-center">
-//         <Sidebar />
-//         <Outlet/>
-//         </div>
-//       </div>
-//       );
-//     };
-
-// export default Dashboard;

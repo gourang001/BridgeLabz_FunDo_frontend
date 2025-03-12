@@ -111,3 +111,19 @@ export const trashNotesApiCall = async (payload) => {
           }
       })
     }
+
+    export const setReminderApiCall = (payload) => {
+      return axios.post("https://fundoonotes.incubation.bridgelabz.com/api/notes/addUpdateReminderNotes",payload,{
+          headers:{
+              Authorization: localStorage.getItem('token')
+          }
+      })
+    }
+
+    export const removeReminderApiCall = (payload) => {
+      return axios.post("https://fundoonotes.incubation.bridgelabz.com/api/notes/removeReminderNotes",payload,{
+          headers:{
+              Authorization: localStorage.getItem('token')
+          }
+      })
+    }

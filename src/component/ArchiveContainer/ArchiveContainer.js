@@ -1,52 +1,46 @@
 import React, { useState, useEffect } from "react";
 import NoteCard from "../NoteCard/NoteCard";
-import { getNotes } from "../../utils/Api"; 
+import { getNotes } from "../../utils/Api";
+import { useOutletContext } from "react-router-dom"; // Import useOutletContext
+import "../NoteContainer/NoteContainer.scss";
 
 const ArchiveContainer = () => {
   const [archivedNotes, setArchivedNotes] = useState([]);
+  const { searchQuery } = useOutletContext(); // Get searchQuery from context
 
   useEffect(() => {
     getNotes()
       .then((data) => {
         const allNotes = data?.data?.data?.data || [];
-        setArchivedNotes(allNotes.filter((note) => note.isArchived && !note.isDeleted));
+        setArchivedNotes(allNotes.filter((note) => note.isArchived)); // Only archived notes
       })
       .catch(() => setArchivedNotes([]));
   }, []);
 
-  const handleArchiveList = ({ action, data }) => {
-    if (action === "unarchive") {
-      setArchivedNotes(archivedNotes.filter((note) => note.id !== data.id)); // Remove unarchived note
-    } else if (action === "delete") {
-      setArchivedNotes(archivedNotes.filter((note) => note.id !== data.id)); // Remove deleted note
-    } else if (action === "restore") {
-      setArchivedNotes([data, ...archivedNotes]); // Add restored note back to archive...................
-    } 
-    else if (action === "color") { // Added color action
+  const handleNotesList = ({ action, data }) => {
+    if (action === "unarchive" || action === "delete") {
+      setArchivedNotes(archivedNotes.filter((note) => note.id !== data.id));
+    } else if (action === "update" || action === "color") {
       setArchivedNotes((prevNotes) =>
-        prevNotes.map((note) =>
-          note.id === data.id ? { ...note, color: data.color } : note
-        )
+        prevNotes.map((note) => (note.id === data.id ? { ...note, ...data } : note))
       );
     }
-    else if (action === "update") {
-      setArchivedNotes((prevNotes) =>
-        prevNotes.map((note) =>
-          note.id === data.id ? { ...note, ...data } : note
-        )
-      );
-    }
-
   };
 
+  // **Search Filtering**
+  const filteredNotes = archivedNotes.filter(
+    (note) =>
+      (note.title && note.title.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (note.description && note.description.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+
   return (
-    <div className="archive-container">
-      <h2>Archived Notes</h2>
+    <div className="note-container">
       <div className="notes-list">
-        {archivedNotes.length > 0 ? (
-          archivedNotes.map((note) => <NoteCard key={note.id} noteDetails={note} updateList={handleArchiveList} />)
+        {filteredNotes.length > 0 ? (
+          filteredNotes.map((note) => <NoteCard key={note.id} noteDetails={note} updateList={handleNotesList} />)
         ) : (
-          <p>No archived notes available.</p>
+          <p>No matching archived notes found.</p>
         )}
       </div>
     </div>

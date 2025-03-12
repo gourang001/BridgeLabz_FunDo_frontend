@@ -132,73 +132,90 @@
 .icon-div-account2 {
     margin-top: 0.5rem; // 7px
 }
+@media  (max-width: 768px) {
+    .header-left {
+        margin-left:0px;
+        width: 50%;
+        border: 1px soild yellow;
+    }
+    .dashboard-header {
+        width: 100%;
+        gap: 190px;
+    }
 
-/* 🌍 Responsive Design */
-@media (max-width: 768px) {
+    /* Hide unnecessary elements */
+    .header-left-container-menu,
+    .header-right-container-icons,
+    .grid-icon,
+    .row-icon {
+        display: none !important;
+    }
+
     .header-right {
         justify-content: flex-end;
-        width: auto;
+        margin-right: 0%;
+        border: 1px soild red;
     }
 
     .dashboard-header-middle-container {
+        border: 1px soild red;
         width: auto;
-        max-width: none;
+        max-width: fit-content;
         background-color: transparent;
         padding-left: 0;
-        justify-content: flex-end;
-        flex-direction: row-reverse;
+        // justify-content: flex-end;
+        // flex-direction: row-reverse;
     }
 
-    .header-middle-search-input {
-        display: none;
-    }
+    // .header-middle-search-input {
+    //     display: none;
+    // }
 
     .search-icon {
-        height: 1.5rem; // 24px
-        width: 1.5rem;
-        cursor: pointer;
+        height: 24px;
+        width: 24px;
     }
-}
 
-@media (max-width: 520px) {
-    .header-left {
-        width: 40%;
-    }
-    .header-right {
-        justify-content: center;
-    }
-    .header-left-container-menu{
-        display: none;
-    }
-    .header-left-container-logo{
-        width: 100%;
-    }
-    .dashboard-header-middle-container {
-        width: auto;
-        max-width: none;
-        background-color: transparent;
-        padding-left: 0;
+    .dashboard-header-right-container {
+        // border: 1px solid green;
+        display: flex;
+       
         justify-content: flex-end;
-        flex-direction: row-reverse;
+        width: auto;
+        flex-grow: 1;
+        gap: 15px;
+        margin-right: 15px;
     }
-
-    .header-middle-search-input,
-    .row-icon,
-    .grid-icon {
-        display: none;
-    }
-
-    .header-right-container-icons {
-        gap: 1rem;
+    .header-left-container-title{
+        margin-right: 30%;
     }
 
     .header-right-container-account {
-        flex-direction: row-reverse;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10px;
+    }
+    .icon-div-account2{
+        margin-top: 7%;
+    }
+    .dashboard-header-left-container {
+        margin-left:0px
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-header-left-container {
+        // margin-left:0px
+    }
+    .header-left {
+        width: 150px;
+    }
+    .dashboard-header-middle-container{
+        display: none;
     }
 
-    .search-icon {
-        height: 1.5rem;
-        width: 1.5rem;
-        cursor: pointer;
+    .header-right {
+        justify-content: center;
     }
 }

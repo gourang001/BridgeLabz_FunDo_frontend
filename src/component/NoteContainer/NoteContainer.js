@@ -2,20 +2,27 @@ import React, { useState, useEffect } from "react";
 import NoteCard from "../NoteCard/NoteCard";
 import { getNotes } from "../../utils/Api";
 import AddNote from "../AddNote/AddNote";
+import Reminder from "../Reminder/Reminder";
 import "./NoteContainer.scss";
-import { useOutletContext } from "react-router-dom"; // Import Outlet Context
+import { useOutletContext } from "react-router-dom";
+import { Typography } from "@mui/material";
 
 const NotesContainer = () => {
   const [notesList, setNotesList] = useState([]);
-  const { searchQuery } = useOutletContext(); // Get search query from context
+  const { searchQuery } = useOutletContext();
 
   useEffect(() => {
     getNotes()
       .then((data) => {
+        console.log("API Response:", data);
         const allNotes = data?.data?.data?.data || [];
+        console.log("Filtered Notes:", allNotes.filter((note) => !note.isArchived && !note.isDeleted));
         setNotesList(allNotes.filter((note) => !note.isArchived && !note.isDeleted));
       })
-      .catch(() => setNotesList([]));
+      .catch((err) => {
+        console.error("Error fetching notes:", err);
+        setNotesList([]);
+      });
   }, []);
 
   const handleNotesList = ({ action, data }) => {
@@ -36,7 +43,13 @@ const NotesContainer = () => {
     }
   };
 
-  // **Search Filtering**
+  // Filter notes with reminders
+  // const reminderNotes = notesList.filter(
+  //   (note) => note.reminder && !isNaN(new Date(note.reminder).getTime())
+  // );
+  // console.log("Reminder Notes:", reminderNotes); // Debug log
+
+  // Filter notes for the main list (include all non-archived, non-deleted notes)
   const filteredNotes = notesList.filter(
     (note) =>
       (note.title && note.title.toLowerCase().includes(searchQuery.toLowerCase())) ||
@@ -46,9 +59,12 @@ const NotesContainer = () => {
   return (
     <div className="note-container">
       <AddNote updateList={handleNotesList} />
+      
       <div className="notes-list">
         {filteredNotes.length > 0 ? (
-          filteredNotes.map((note) => <NoteCard key={note.id} noteDetails={note} updateList={handleNotesList} />)
+          filteredNotes.map((note) => (
+            <NoteCard key={note.id} noteDetails={note} updateList={handleNotesList} />
+          ))
         ) : (
           <p>No matching notes found.</p>
         )}
@@ -58,66 +74,3 @@ const NotesContainer = () => {
 };
 
 export default NotesContainer;
-
-
-// import React, { useState, useEffect } from "react";
-// import NoteCard from "../NoteCard/NoteCard";
-// import { getNotes } from "../../utils/Api"; 
-// import AddNote from "../AddNote/AddNote"; 
-// import "./NoteContainer.scss";
-
-// const NotesContainer = () => {
-//   const [notesList, setNotesList] = useState([]);
-
-//   useEffect(() => {
-//     getNotes()
-//       .then((data) => {
-//         const allNotes = data?.data?.data?.data || [];
-//         console.log(data);
-//         setNotesList(allNotes.filter((note) => !note.isArchived && !note.isDeleted)); // Filter out deleted/archive notes
-//       })
-//       .catch(() => setNotesList([]));
-//   }, []);
-
-//   const handleNotesList = ({ action, data }) => {
-//     if (action === "add") {
-//       setNotesList([data, ...notesList]);
-//     } else if (action === "archive") {
-//       setNotesList(notesList.filter((note) => note.id !== data.id)); // Remove archived note
-//     } else if (action === "unarchive") {
-//       setNotesList([data, ...notesList]); // Add unarchived note back to list
-//     } else if (action === "delete") {
-//       setNotesList(notesList.filter((note) => note.id !== data.id)); // Remove deleted note from list
-//     } 
-//     else if (action === "update") {
-//       setNotesList((prevNotes) =>
-//         prevNotes.map((note) =>
-//           note.id === data.id ? { ...note, ...data } : note
-//         )
-//       )
-//     }
-//     else if (action === "color") { // Added color action
-//       setNotesList((prevNotes) =>
-//         prevNotes.map((note) =>
-//           note.id === data.id ? { ...note, color: data.color } : note
-//         )
-//       );
-//     }
-//   };
-
-//   return (
-//     <div className="note-container">
-//       <AddNote updateList={handleNotesList} />
-
-//       <div className="notes-list">
-//         {notesList.length > 0 ? (
-//           notesList.map((note) => <NoteCard key={note.id} noteDetails={note} updateList={handleNotesList} />)
-//         ) : (
-//           <p>No notes available.</p>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default NotesContainer;

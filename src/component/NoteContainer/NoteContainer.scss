@@ -200,3 +200,64 @@
 //   padding: 10px;
 //   justify-content: center;
 // }
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .notes-list {
+    grid-template-columns: repeat(3, 1fr); // 3 cards per row
+  }
+
+  .note-container {
+    padding: 30px; // Slightly less padding
+  }
+}
+
+@media (max-width: 900px) {
+  .notes-list {
+    grid-template-columns: repeat(2, 1fr); // 2 cards per row
+  }
+
+  .note-card {
+    max-width: 500px; // Slightly smaller cards
+    padding: 8px 12px 0px 8px; // Adjusted padding
+  }
+
+  .icon-row {
+    gap: 5px; // Adds spacing between wrapped icons
+  }
+}
+
+
+@media  screen and (min-width:320px) and (max-width: 427px) {
+  .notes-list {
+    grid-template-columns: 1fr; // 1 card per row
+    
+  }
+
+  .note-container {
+    padding: 20px; // Reduced padding for small screens
+  }
+
+  .note-card {
+    width: 360px; // Full width on mobile
+    // margin-left: 10px;
+    border-radius: 20px; // Slightly less rounded for smaller screens
+  }
+
+  .text-field {
+    font-size: 20px; // Smaller text
+  }
+
+  .collapsed-text {
+    font-size: 14px;
+  }
+
+  .icon-row {
+    justify-content: flex-start; // Align icons to left when wrapped
+  }
+
+  .close-button {
+    font-size: 12px; // Smaller button text
+  }
+}
