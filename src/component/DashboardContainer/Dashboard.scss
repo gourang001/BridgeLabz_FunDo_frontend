@@ -1,8 +1,15 @@
-.dashboard-main{
+.dashboard-main {
   display: flex;
   flex-direction: column;
 }
 
-.dashboard-center{
+.dashboard-center {
   display: flex;
+  transition: margin-left 0.3s ease-in-out; /* Smooth content shift */
+}
+
+@media (max-width: 768px) {
+  .dashboard-center {
+    margin-left: 0; /* No margin when sidebar is hidden */
+  }
 }
