@@ -16,9 +16,9 @@ const TrashContainer = () => {
 
   const handleTrashList = ({ action, data }) => {
     if (action === "restore") {
-      setTrashNotes(trashNotes.filter((note) => note.id !== data.id)); // Remove restored note
+      setTrashNotes(trashNotes.filter((note) => note.id !== data.id)); 
     } else if (action === "delete") {
-      setTrashNotes(trashNotes.filter((note) => note.id !== data.id)); // Remove permanently deleted note
+      setTrashNotes(trashNotes.filter((note) => note.id !== data.id)); 
     }
   };
 

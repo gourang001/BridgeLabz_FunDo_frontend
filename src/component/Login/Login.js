@@ -3,7 +3,7 @@ import {TextField,Button,Typography,Box,Container,Paper,} from "@mui/material";
 import "./Login.scss";
 import { loginApiCall } from "../../utils/Api";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { Link as MuiLink } from "@mui/material"; // Import MUI's Link separately
+import { Link as MuiLink } from "@mui/material"; 
 
 const Login = () => {
   const navigate=useNavigate();
@@ -17,7 +17,6 @@ const Login = () => {
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   const handleLogin = () => {
-    console.log("api hit");
     let isValid = true;
 
     if (!emailRegex.test(email)) {
@@ -27,20 +26,11 @@ const Login = () => {
       setEmailError("");
     }
 
-    // if (!passwordRegex.test(password)) {
-    //   setPasswordError(
-    //     "Password must be at least 8 characters, include uppercase, lowercase, number, and special character."
-    //   );
-    //   isValid = false;
-    // } else {
-    //   setPasswordError("");
-    // }
 
     
     if (isValid) {
       loginApiCall({ email, password })
         .then((res) => {
-          console.log("Login successful:", res);
           navigate("/dashboard/notes");
         })
         .catch((err) => {

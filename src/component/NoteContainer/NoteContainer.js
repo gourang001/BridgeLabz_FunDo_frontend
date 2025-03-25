@@ -14,9 +14,7 @@ const NotesContainer = () => {
   useEffect(() => {
     getNotes()
       .then((data) => {
-        console.log("API Response:", data);
         const allNotes = data?.data?.data?.data || [];
-        console.log("Filtered Notes:", allNotes.filter((note) => !note.isArchived && !note.isDeleted));
         setNotesList(allNotes.filter((note) => !note.isArchived && !note.isDeleted));
       })
       .catch((err) => {
@@ -43,13 +41,7 @@ const NotesContainer = () => {
     }
   };
 
-  // Filter notes with reminders
-  // const reminderNotes = notesList.filter(
-  //   (note) => note.reminder && !isNaN(new Date(note.reminder).getTime())
-  // );
-  // console.log("Reminder Notes:", reminderNotes); // Debug log
-
-  // Filter notes for the main list (include all non-archived, non-deleted notes)
+  
   const filteredNotes = notesList.filter(
     (note) =>
       (note.title && note.title.toLowerCase().includes(searchQuery.toLowerCase())) ||

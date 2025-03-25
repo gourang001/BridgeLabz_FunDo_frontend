@@ -2,7 +2,7 @@ import axios from "axios";
 export const loginApiCall=async (payload)=>{
     try{
         const response=await axios.post('https://fundoonotes.incubation.bridgelabz.com/api/user/login',payload);
-        console.log(response.data);
+
         localStorage.setItem("token",response.data.id);
         localStorage.setItem("email",response.data.email);
 
@@ -19,7 +19,7 @@ export const loginApiCall=async (payload)=>{
 export const signupApiCall = async (payload)=>{
     try {
         const response = await axios.post('https://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp', payload);
-        console.log('Response data:', response.data);
+        
 
         return response.data;
     } catch (error) {

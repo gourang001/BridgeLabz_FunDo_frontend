@@ -8,30 +8,30 @@ import { signupApiCall } from "../../utils/Api";
 
 const Signup = () => {
 
-  // State for form fields
+  
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // State for error messages
+  
   const [firstNameError, setFirstNameError] = useState("");
   const [lastNameError, setLastNameError] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
-  // Regex patterns
-  const nameRegex = /^[a-zA-Z]{2,}$/; // At least 2 characters
-  const usernameRegex = /^[a-zA-Z0-9.]{3,}$/; // At least 3 characters 
+  
+  const nameRegex = /^[a-zA-Z]{2,}$/; 
+  const usernameRegex = /^[a-zA-Z0-9.]{3,}$/; 
   const passwordRegex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{6,}$/;
 
   const handleSignup = (e) => {
     e.preventDefault();
     let isValid = true;
 
-    // First Name validation
+    
     if (!nameRegex.test(firstName)) {
       setFirstNameError("First name must be at least 2 alphabetic characters");
       isValid = false;
@@ -39,7 +39,7 @@ const Signup = () => {
       setFirstNameError("");
     }
 
-    // Last Name validation
+    
     if (!nameRegex.test(lastName)) {
       setLastNameError("Last name must be at least 2 alphabetic characters");
       isValid = false;
@@ -47,25 +47,9 @@ const Signup = () => {
       setLastNameError("");
     }
 
-    // Username validation
-    // if (!usernameRegex.test(username)) {
-    //   setUsernameError("Username must be at least 3 characters (letters, numbers, periods)");
-    //   isValid = false;
-    // } else {
-    //   setUsernameError("");
-    // }
+  
 
-    // Password validation
-    // if (!passwordRegex.test(password)) {
-    //   setPasswordError(
-    //     "Password must be at least 6 characters, include uppercase, lowercase, number, and special character"
-    //   );
-    //   isValid = false;
-    // } else {
-    //   setPasswordError("");
-    // }
 
-    // Confirm Password validation
     if (password !== confirmPassword) {
       setConfirmPasswordError("Passwords do not match");
       isValid = false;
@@ -74,7 +58,6 @@ const Signup = () => {
     }
 
     if (isValid) {
-      console.log("Form submitted:", { firstName, lastName, email : username, "service": "advance", password });
       signupApiCall({ firstName, lastName, email : username, "service": "advance", password });
     }
   };
@@ -83,7 +66,6 @@ const Signup = () => {
     <Container component="main" maxWidth="md" className="signup-container">
       <Paper elevation={3} className="signup-paper">
         <Grid2 container spacing={2}>
-          {/* Left Side - Form Section */}
           <Grid2 margin={2} className="signup-left">
             <Typography variant="h5" className="signup-title">Fundo</Typography>
             <Typography variant="h6" className="signup-subtitle">Create your Fundo Account</Typography>
@@ -173,7 +155,7 @@ const Signup = () => {
             </Box>
           </Grid2>
 
-          {/* Right Side - Image Section */}
+          
           <Grid2 className="signup-right">
             <img
               src={imgLogo}
@@ -190,7 +172,6 @@ const Signup = () => {
         </Grid2>
       </Paper>
 
-      {/* Footer */}
       <Box className="footer">
         <Typography variant="caption" className="language-selection">
           English (United States)

@@ -70,7 +70,7 @@
 .footer-container {
   margin-top: 0.4em;
   display: flex;
-  justify-content: space-between;  /* Spreads items apart */
+  justify-content: space-between;  
   align-items: center;
   width: 100%; 
   padding: 10px 20px;
@@ -78,11 +78,11 @@
 
 .footer-links {
   display: flex;
-  gap: 15px; /* Spacing between links */
+  gap: 15px; 
 }
 
 
-/* Responsive Styles for Tablets */
+
 @media (max-width: 768px) {
   .login-paper {
       width: 90%;
@@ -100,13 +100,11 @@
   }
 }
 
-/* Responsive Styles for Mobile  */
+
 @media (min-width: 320px) and (max-width: 480px) {
   .login-paper {
     width: 95%;
     padding: 1.5em;
-    // margin: left 20px;
-    // margin: auto;
   }
 
   .login-title {

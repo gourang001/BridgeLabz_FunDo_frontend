@@ -5,11 +5,11 @@
 
 .dashboard-center {
   display: flex;
-  transition: margin-left 0.3s ease-in-out; /* Smooth content shift */
+  transition: margin-left 0.3s ease-in-out; 
 }
 
 @media (max-width: 768px) {
   .dashboard-center {
-    margin-left: 0; /* No margin when sidebar is hidden */
+    margin-left: 0; 
   }
 }

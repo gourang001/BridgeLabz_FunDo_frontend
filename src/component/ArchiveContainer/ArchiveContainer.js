@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NoteCard from "../NoteCard/NoteCard";
 import { getNotes } from "../../utils/Api";
-import { useOutletContext } from "react-router-dom"; // Import useOutletContext
+import { useOutletContext } from "react-router-dom"; 
 import "../NoteContainer/NoteContainer.scss";
 
 const ArchiveContainer = () => {
@@ -27,7 +27,7 @@ const ArchiveContainer = () => {
     }
   };
 
-  // **Search Filtering**
+  
   const filteredNotes = archivedNotes.filter(
     (note) =>
       (note.title && note.title.toLowerCase().includes(searchQuery.toLowerCase())) ||

@@ -29,10 +29,10 @@ const sidebarItemsList = [
 const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   const location = useLocation();
 
-  // Close sidebar on route click for mobile screens
+  
   const handleRouteClick = () => {
     if (window.innerWidth <= 768) {
-      toggleSidebar(); // Collapse sidebar on mobile
+      toggleSidebar(); 
     }
   };
 

@@ -27,11 +27,11 @@ const AddNote = ({ updateList, noteDetails, setModalOpen, handleIconClick }) => 
 
   const handleAddNote = useCallback(() => {
     if (title || note) {
-      if (noteDetails) { // Edit mode
-        updateNoteApiCall({ ...noteDetails, title, description: note, noteId: noteDetails.id }) // Updated to match your pattern
+      if (noteDetails) { 
+        updateNoteApiCall({ ...noteDetails, title, description: note, noteId: noteDetails.id }) 
           .then((res) => {
             handleIconClick({ action: "update", data: { ...noteDetails, title, description: note } });
-            if (color !== noteDetails.color) { // If color changed
+            if (color !== noteDetails.color) { 
               changeColorAPI({ "noteIdList": [`${noteDetails.id}`], color })
                 .then(() => {
                   handleIconClick({ action: "color", data: color });
@@ -41,7 +41,7 @@ const AddNote = ({ updateList, noteDetails, setModalOpen, handleIconClick }) => 
             setModalOpen(false);
           })
           .catch((err) => console.error("Error updating note:", err));
-      } else { // Add mode
+      } else { 
         const newNote = { title, description: note, color };
         addNoteApiCall(newNote)
           .then((response) => {
@@ -59,7 +59,7 @@ const AddNote = ({ updateList, noteDetails, setModalOpen, handleIconClick }) => 
   const handleColorChange = ({ color }) => {
     setColor(color);
     setShowColors(false);
-    if (noteDetails) { // If editing, update color immediately
+    if (noteDetails) { 
       handleIconClick({ action: "color", data: color });
     }
   };

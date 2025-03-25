@@ -7,8 +7,8 @@ import NoteContainer from './component/NoteContainer/NoteContainer';
 import ArchiveContainer from './component/ArchiveContainer/ArchiveContainer';
 import TrashContainer from './component/TrashContainer/TrashContainer';
 import Reminder from './component/Reminder/Reminder';
-import AuthRoute from './component/ProtectedRoute/AuthRoute'; // Import AuthRoute
-import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute'; // Import ProtectedRoute
+import AuthRoute from './component/ProtectedRoute/AuthRoute'; 
+import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute'; 
 
 const router = createBrowserRouter([
   {
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        index: true, // Default child route
+        index: true, 
         element: <Navigate to="notes" replace />,
       },
       {
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "*", // Fallback for invalid routes
+    path: "*", 
     element: <Navigate to="/" replace />, 
   },
 ]);
@@ -66,56 +66,3 @@ const router = createBrowserRouter([
 export default function RoutingModule() {
   return <RouterProvider router={router} />;
 }
-// import React from 'react'
-// import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-// import Login from './component/Login/Login';
-// import Signup from './component/Signup/Signup';
-// import NoteContainer from './component/NoteContainer/NoteContainer';
-// import Dashboard from './component/DashboardContainer/Dashboard';
-// import ArchiveContainer from './component/ArchiveContainer/ArchiveContainer';
-// import TrashContainer from './component/TrashContainer/TrashContainer';
-// import Reminder from './component/Reminder/Reminder';
-// import Lable from './component/Lable/Lable';
-
-// export default function RoutingModule() {
-//   const route=createBrowserRouter([ 
-//     {
-//       path:"",
-//       element:<Login/>
-//     },
-//     {
-//       path:"signup",
-//       element:<Signup/>
-//     },
-//     {
-//       path:"dashboard",
-//       element:<Dashboard/>,
-//       children:[
-//         {
-//         path:"notes",
-//         element:<NoteContainer/>
-//       },
-//       {
-//         path:"archive",
-//         element:<ArchiveContainer/>
-//       },
-//       {
-//         path:"trash",
-//         element:<TrashContainer/>
-//       },
-//       {
-//         path:"reminder",
-//         element:<Reminder/>
-//       },
-//       {
-//         path:"lable",
-//         element:<Lable/>
-//       },
-//     ]
-//     },
-
-//   ]);
-//   return (
-//     <RouterProvider router={route}/>
-//   )
-// }

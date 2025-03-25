@@ -5,7 +5,7 @@ const isAuthenticated = () => {
   return !!localStorage.getItem('token');
 };
 
-// ProtectedRoute component to guard routes
+
 const ProtectedRoute = ({ children }) => {
   if (!isAuthenticated()) {
     return <Navigate to="/" replace />;

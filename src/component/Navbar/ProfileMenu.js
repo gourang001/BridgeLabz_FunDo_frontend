@@ -11,7 +11,6 @@ const ProfileMenu = ({ anchorEl, handleClose }) => {
     const firstLetters = email.slice(0,7);
     const handleLogout = ()=>{
         localStorage.clear();
-        // handleClose();
         navigate("/");
     }
 
@@ -25,14 +24,9 @@ const ProfileMenu = ({ anchorEl, handleClose }) => {
                 vertical: "bottom",
                 horizontal: "right",
             }}
-            // transformOrigin={{
-            //     vertical: "top",
-            //     horizontal: "right",
-            // }}
             sx={{ mt: 1 }}
         >
             <Box sx={{ p: 2, width: 280, cursor: "pointer" }}>
-                {/* Profile Header */}
                 <Box sx={{ textAlign: "center", pb: 2, borderBottom: "1px solid #ddd" }}>
                     <Avatar sx={{ bgcolor: "#8a6aff", width: 56, height: 56, mx: "auto", fontSize: 26 }}>{firstLetter}</Avatar>
                     <Typography variant="h6" sx={{ mt: 1 }}>
@@ -50,7 +44,7 @@ const ProfileMenu = ({ anchorEl, handleClose }) => {
                     </Button>
                 </Box>
 
-                {/* Profile Options */}
+                
                 <Box sx={{ pt: 2 }}>
                     <Typography
                         variant="body1"

@@ -34,7 +34,6 @@
 .signup-left {
   width: 45%;
   flex: 4;
-  // padding: 20px;
 }
 
 .signup-title {
@@ -86,7 +85,7 @@
   gap: 15px;
 }
 
-/* Small Mobile Devices (up to 480px) */
+
 @media screen and (min-width: 120px) and (max-width: 480px) {
   .signup-container {
     padding: 10px;
@@ -138,7 +137,7 @@
   }
 }
 
-/* Tablets (481px - 768px) */
+
 @media screen and (min-width: 481px) and (max-width: 768px) {
   .signup-paper {
     flex-direction: column;

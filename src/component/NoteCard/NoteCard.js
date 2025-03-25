@@ -10,7 +10,7 @@ import {
   Popover,
   Modal,
   Button,
-  Tooltip, // Import Tooltip from MUI
+  Tooltip, 
 } from "@mui/material";
 import {
   NotificationsNoneOutlined,
@@ -135,7 +135,6 @@ export default function NoteCard({ noteDetails, updateList, isTrash = false }) {
     };
     setReminderApiCall(payload)
       .then((response) => {
-        console.log(response);
         setReminder(tempReminder);
         updateList({
           action: "update",
