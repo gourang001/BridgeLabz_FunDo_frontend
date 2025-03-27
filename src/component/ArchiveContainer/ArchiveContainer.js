@@ -6,13 +6,13 @@ import "../NoteContainer/NoteContainer.scss";
 
 const ArchiveContainer = () => {
   const [archivedNotes, setArchivedNotes] = useState([]);
-  const { searchQuery } = useOutletContext(); // Get searchQuery from context
+  const { searchQuery } = useOutletContext(); 
 
   useEffect(() => {
     getNotes()
       .then((data) => {
         const allNotes = data?.data?.data?.data || [];
-        setArchivedNotes(allNotes.filter((note) => note.isArchived)); // Only archived notes
+        setArchivedNotes(allNotes.filter((note) => note.isArchived)); 
       })
       .catch(() => setArchivedNotes([]));
   }, []);

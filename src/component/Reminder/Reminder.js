@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import NoteCard from "../NoteCard/NoteCard";
 import { getNotes } from "../../utils/Api";
+import { useOutletContext } from "react-router-dom";
 import "./Reminder.scss"; 
 
 export default function Reminder() {
   const [reminderNotes, setReminderNotes] = useState([]);
+  const { searchQuery } = useOutletContext();
 
   useEffect(() => {
     getNotes()
@@ -39,15 +41,23 @@ export default function Reminder() {
     });
   };
 
+  const filteredReminderNotes = reminderNotes.filter(
+    (note) =>
+      (note.title && note.title.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (note.description && note.description.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+
   return (
-    <div className="reminder-container">
-      {reminderNotes.length > 0 ? (
-        reminderNotes.map((note) => (
-          <NoteCard key={note.id} noteDetails={note} updateList={updateList} />
-        ))
-      ) : (
-        <p>No reminders set.</p>
-      )}
+    <div className="note-container">
+      <div className="notes-list">
+        {filteredReminderNotes.length > 0 ? (
+          filteredReminderNotes.map((note) => (
+            <NoteCard key={note.id} noteDetails={note} updateList={updateList} />
+          ))
+        ) : (
+          <p>No matching reminders found.</p>
+        )}
+      </div>
     </div>
   );
 }

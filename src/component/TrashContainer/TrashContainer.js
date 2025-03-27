@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import NoteCard from "../NoteCard/NoteCard";
 import { getNotes } from "../../utils/Api"; 
+import { useOutletContext } from "react-router-dom"; 
+import "./TrashContainer.scss";
 
 const TrashContainer = () => {
   const [trashNotes, setTrashNotes] = useState([]);
+  const { searchQuery } = useOutletContext(); 
 
   useEffect(() => {
     getNotes()
@@ -22,18 +25,32 @@ const TrashContainer = () => {
     }
   };
 
-  return (
-    <div className="trash-container">
-      {/* <h2>Trash</h2> */}
-      <div className="notes-list">
-        {trashNotes.length > 0 ? (
-          trashNotes.map((note) => <NoteCard key={note.id} noteDetails={note} updateList={handleTrashList} isTrash />)
-        ) : (
-          <p>No notes in Trash.</p>
-        )}
-      </div>
-    </div>
+  
+  const filteredTrashNotes = trashNotes.filter(
+    (note) =>
+      (note.title && note.title.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (note.description && note.description.toLowerCase().includes(searchQuery.toLowerCase()))
   );
+
+  
+return (
+  <div className="trash-container">
+    <div className="trash-notes-list">
+      {filteredTrashNotes.length > 0 ? (
+        filteredTrashNotes.map((note) => (
+          <NoteCard 
+            key={note.id} 
+            noteDetails={note} 
+            updateList={handleTrashList} 
+            isTrash 
+          />
+        ))
+      ) : (
+        <p>No matching notes found in Trash.</p>
+      )}
+    </div>
+  </div>
+);
 };
 
 export default TrashContainer;

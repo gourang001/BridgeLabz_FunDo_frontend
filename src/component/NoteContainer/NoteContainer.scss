@@ -157,3 +157,16 @@
     font-size: 12px; 
   }
 }
+
+.my-masonry-grid {
+  display: flex;
+  margin-left: -16px; /* Adjust gutter */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 16px; /* Adjust gutter */
+  background-clip: padding-box;
+}
+.my-masonry-grid_column > div {
+  margin-bottom: 16px; /* Adjust spacing */
+}
